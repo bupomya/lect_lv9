@@ -45,7 +45,7 @@ private UserManager um = UserManager.instance;
 				}else if (sel == 2) {//입금
 					um.deposit();
 				}else if (sel == 3) {//출금
-					
+					um.withdraw();
 				}else if (sel ==4) {//이체
 					
 				}else if (sel == 5) {//조회

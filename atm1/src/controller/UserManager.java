@@ -45,6 +45,12 @@ public class UserManager {
 		}
 		return code;
 	}//randomCode
+	
+	public void printAcc() {
+		for (int i = 0; i < this.users.get(Bank.log).accCnt(); i++) {
+			System.out.print(this.users.get(Bank.log).getAcc(i)+" / ");
+		}
+	}
 
 	public int login() {// 로그인
 		System.out.print("id : ");
@@ -60,18 +66,70 @@ public class UserManager {
 	}// login
 
 	public void accOpen() {
-
-		
+		if (this.users.get(Bank.log).accCnt()<3) {
+			this.users.get(Bank.log).setAcc(Bank.log, randomCode());
+		}else {
+			System.out.println("저장공간이 없습니다");
+		}
 	}// addOpen
 
 	public void deposit() {// 입금
+		printAcc();
 		System.out.println("입금할 계좌");
-		String acc = Bank.sc.next();
-
+		int acc = Bank.sc.nextInt();
+		
+		int idx1 = -1;
+		int idx2 = -1;
 		for (int i = 0; i < this.users.size(); i++) {
-
+			for (int j = 0; j < this.users.get(i).accCnt(); j++) {
+				if (this.users.get(i).getAcc(j)==acc) {
+					idx1 = i;
+					idx2 = j;
+				}
+			}
+		}
+		if (idx1 != -1 && idx2 != -2) {
+			System.out.print("입금할 금액 입력 : ");
+			int money = Bank.sc.nextInt();
+			this.users.get(idx1).setAcc(idx2, money);
+			System.out.println("입금완료");
+		}else {
+			System.out.println("잘못된 계좌번호");
 		}
 
 	}// deposit
+	
+	public void withdraw() {
+		printAcc();
+		System.out.println("출금할 계좌 입력");
+		int acc = Bank.sc.nextInt();
+		int idx1 = -1;
+		int idx2 = -1;
+		
+		//
+		for (int i = 0; i < this.users.size(); i++) {
+			for (int j = 0; j < this.users.get(i).accCnt(); j++) {
+				if (this.users.get(i).getAcc(j)==acc) {
+					idx1 = i;
+					idx2 = j;
+				}
+			}
+		}
+		if (idx1 != -1 && idx2 != -1) {
+			System.out.print("출금할 금액 입력 : ");
+			int money = Bank.sc.nextInt();
+			if (this.users.get(idx1).getMoney(idx2)>=money) {
+				int chaMoney = this.users.get(idx1).getMoney(idx2) - money;
+				this.users.get(idx1).setMoney(idx2, chaMoney);
+				System.out.println("출금 완료");
+				System.out.println("잔액 : "+ chaMoney);
+			}else {
+				System.out.println("잔액 부족");
+			}
+		}
+		
+	}//withdraw
 
+	
+	
 }
