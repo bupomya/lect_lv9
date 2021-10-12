@@ -27,14 +27,21 @@ public class User {
 	public int getUserCode() {
 		return this.userCode;
 	}//getUserCode
-	public int accCnt() {
+	public int getAccCnt() {
 		return this.accCnt;
-	}//accCnt
+	}//getAccCnt
 	public int getAcc(int idx) {
 		return this.acc[idx];
 	}//getAcc
 	public int getMoney(int idx) {
 		return this.money[idx];
+	}
+	public String getName() {
+		return this.name;
+	}
+	
+	public void setAccCnt(int accCnt) {
+		this.accCnt = accCnt;
 	}
 	
 	public void setAcc(int idx, int data) {
@@ -43,4 +50,5 @@ public class User {
 	public void setMoney(int idx, int data) {
 		this.money[idx] = data;
 	}
+	
 }
