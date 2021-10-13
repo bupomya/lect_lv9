@@ -12,5 +12,4 @@ public class ItemManager {
 	ArrayList<Item> item = new ArrayList<>();
 	ArrayList<Basket> cart = new ArrayList<>();
 	
-	
 }
