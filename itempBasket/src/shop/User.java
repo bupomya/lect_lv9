@@ -10,7 +10,7 @@ public class User {
 	}//User
 	
 	void print() {
-		System.out.printf("%s : %d",this.id,this.money);
+		System.out.printf("%s : %d¿ø",this.id,this.money);
 	}
 	
 }//User
