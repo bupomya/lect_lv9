@@ -1,5 +1,7 @@
 package shop;
 
-public class Item {
+import controller.ItemManager;
 
+public class Item {
+	ItemManager item = new ItemManager();
 }
