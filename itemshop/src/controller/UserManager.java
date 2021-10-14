@@ -66,4 +66,8 @@ public class UserManager {
 		this.userLog = -1;
 	}//logOut
 	
+	public void withdrawal() {
+		
+	}//withdrawal
+	
 }//UserManager

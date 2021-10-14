@@ -29,7 +29,7 @@ public class Shop {
 		}else if (sel ==3) {
 			um.logOut();
 		}else if (sel == 4) {
-			
+			um.withdrawal();
 		}else {
 			System.out.println("잘못된 메뉴");
 		}

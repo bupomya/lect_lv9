@@ -9,7 +9,6 @@ import shop.Item;
 public class ItemManager {
 	Scanner sc = new Scanner(System.in);
 
-	
 	ArrayList<String> category = new ArrayList<>();
 	ArrayList<Item> itemList = new ArrayList<>();
 	ArrayList<Cart> jangList = new ArrayList<>();
@@ -37,5 +36,11 @@ public class ItemManager {
 			this.itemList.get(i).printItem();
 		}
 	}//printItem
+	
+	public void addItem() {
+		System.out.println("추가할 아이템");
+		String item = sc.next();
+		
+	}//addItem
 	
 }//ItemManager
