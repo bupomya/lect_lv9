@@ -4,17 +4,18 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
+import shop.User;
+
 
 public class UserManager {
 	Random rn = new Random();
 	Scanner sc = new Scanner(System.in);
 	
-	private String userId;
-	private int userCode;
+
 	private int userCnt;
 	private int userLog = -1;
 	
-	ArrayList<String> ids = new ArrayList<String>();
+	ArrayList<User> ids = new ArrayList<>();
 	
 	
 	public int getUserLog() {
@@ -29,13 +30,13 @@ public class UserManager {
 		boolean check = false;
 		if (this.userCnt != 0) {
 			for (int i = 0; i < this.userCnt; i++) {
-				if (this.ids.get(i) == id) {
+				if (this.ids.get(i).getUserId().equals(id)) {
 					check = true;
 				}
 			}
 		}
 		if (!check) {
-			ids.add(id);
+			
 			this.userCnt++;
 			System.out.println("가입완료");
 		}else {
@@ -48,7 +49,7 @@ public class UserManager {
 			System.out.print("id입력 : ");
 			String id = sc.next();
 			for (int i = 0; i < this.userCnt; i++) {
-				if (ids.get(i) == id) {
+				if (this.ids.get(i).getUserId().equals(id)) {
 					this.userLog = i;
 				}
 			}
@@ -67,7 +68,19 @@ public class UserManager {
 	}//logOut
 	
 	public void withdrawal() {
-		
+		System.out.println("탈퇴할 id");
+		String delId = sc.next();
+		int idx = -1;
+		for (int i = 0; i < this.userCnt; i++) {
+			if (this.ids.get(i).getUserId().equals(delId)) {
+				idx = i;
+			}
+		}
+		if (idx!=-1) {
+			ids.set(idx, null);
+		}else {
+			System.out.println("id다시 확인");
+		}
 	}//withdrawal
 	
 }//UserManager
