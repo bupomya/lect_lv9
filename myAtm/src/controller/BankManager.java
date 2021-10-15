@@ -4,7 +4,7 @@ import model.Bank;
 
 public class BankManager {
 
-	BankManager instance = new BankManager();
+	public static BankManager instance = new BankManager();
 	UserManager um = new UserManager();
 	AccountManager am = new AccountManager();
 
@@ -23,16 +23,18 @@ public class BankManager {
 				System.out.println("Àß¸øµÈ ¸Ş´º");
 			}
 		} else {
-			System.out.println("1.°èÁÂ °³¼³\n2.¹ğÅ·\n3.È¸¿øÅ»Åğ\n4.°èÁÂ»èÁ¦");
+			System.out.println("1.°èÁÂ °³¼³\n2.¹ğÅ·\n3.·Î±×¾Æ¿ô\n4.°èÁÂ»èÁ¦\n5.È¸¿øÅ»Åğ");
 			int sel = Bank.sc.nextInt();
 			if (sel == 1) {
 
 			} else if (sel == 2) {
-
+				am.createAcc();
 			} else if (sel == 3) {
-
+				um.logout();
 			} else if (sel == 4) {
 
+			}else if (sel == 5) {
+				
 			} else {
 				System.out.println("Àß¸øµÈ ¸Ş´º");
 			}

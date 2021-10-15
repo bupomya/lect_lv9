@@ -8,7 +8,8 @@ import model.User;
 
 public class UserManager {
 	Random rn = new Random();
-
+	
+	public static UserManager instance =  new UserManager();
 	ArrayList<User> users = new ArrayList<>();
 
 	public void join() {
@@ -28,6 +29,7 @@ public class UserManager {
 
 		if (!check) {
 			User newUser = new User(id, pw, name, randomCode());
+			
 			System.out.println("가입 완료");
 		} else {
 			System.out.println("중복 id");
@@ -73,5 +75,24 @@ public class UserManager {
 			System.out.println("id또는 pw확인");
 		}
 	}// login
-
+	
+	public void logout() {
+		Bank.log = -1;
+	}//logout
+	
+	
+	
+	
+	//<<<<<<<<<<<<<<<
+	
+	public User getUser(int log) {
+		return this.users.get(log);
+	}//getUser
+	public int getUsersSize() {
+		return this.users.size();
+	}//getUsersSize
+	public void addUser(User user) {
+		this.users.add(user);
+	}//addUser
+	
 }// UserManager
