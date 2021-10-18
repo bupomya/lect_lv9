@@ -46,8 +46,16 @@ public class AccountManager {
 	public void deleteAcc() {
 		System.out.print("delete Acc : ");
 		int acc = Bank.sc.nextInt();
-		
-		for
+		int idx = -1;
+		for(int i = 0; i<ac.size();i++) {
+			if (ac.get(i).getUserCode() == acc) {
+				idx = i;
+			}
+		}
+		if (idx != -1) {
+			ac.set(idx, null);
+			System.out.println("삭제 완료");
+		}
 	}//deleteAcc
 	
 	
