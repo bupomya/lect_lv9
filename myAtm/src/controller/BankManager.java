@@ -32,7 +32,7 @@ public class BankManager {
 			} else if (sel == 3) {
 				um.logout();
 			} else if (sel == 4) {
-
+				am.deleteAcc();
 			}else if (sel == 5) {
 				
 			} else {

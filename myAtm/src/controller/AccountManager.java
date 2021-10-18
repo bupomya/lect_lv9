@@ -19,6 +19,7 @@ public class AccountManager {
 		int cnt =um.users.get(Bank.log).getAccCnt(); 
 		if (cnt<3) {
 			this.ac.add(new Account(createAccNum(),userCode));
+			ac.get(Bank.log).setUserCode(createAccNum());
 			um.getUser(Bank.log).setAccCnt(++cnt);
 		}else {
 			System.out.println("최대개설 계좌 초과");
@@ -40,8 +41,15 @@ public class AccountManager {
 			}
 			
 		}//while
-		
 	}//createAccNum
+	
+	public void deleteAcc() {
+		System.out.print("delete Acc : ");
+		int acc = Bank.sc.nextInt();
+		
+		for
+	}//deleteAcc
+	
 	
 	
 }//AccountManager

@@ -24,8 +24,15 @@ public class Account {
 	public int getMoney() {
 		return this.money;
 	}//getMoney
+	
+	public int getUserCode() {
+		return this.userCode;
+	}//getUserCode
 	public void setMoeny(int money) {
 		this.money = money;
 	}//setMoney
+	public void setUserCode(int userCode) {
+		this.userCode = userCode;
+	}//setUserCode
 	
 }//Account
