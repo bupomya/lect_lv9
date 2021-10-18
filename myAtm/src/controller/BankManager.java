@@ -9,15 +9,19 @@ public class BankManager {
 	AccountManager am = new AccountManager();
 
 	public void printMenu() {
-
+		while(true) {
 		if (Bank.log == -1) {
-			System.out.println("1.회원가입\n2.로그인\n3.관리자모드");
+			System.out.println("1.회원가입\n2.로그인\n0.관리자모드");
 			int sel = Bank.sc.nextInt();
 			if (sel == 1) {
 				um.join();
 			} else if (sel == 2) {
 				um.login();
-			} else if (sel == 3) {
+			}
+			
+			
+			
+			else if (sel == 0) {
 
 			} else {
 				System.out.println("잘못된 메뉴");
@@ -39,6 +43,7 @@ public class BankManager {
 				System.out.println("잘못된 메뉴");
 			}
 		}
+		}//while
 
 	}// printMenu
 

@@ -1,5 +1,10 @@
 package main;
 
-public class Main {
+import controller.BankManager;
 
+public class Main {
+	public static void main(String[] args) {
+		BankManager bm = new BankManager();
+		bm.printMenu();
+	}
 }

@@ -29,7 +29,7 @@ public class UserManager {
 
 		if (!check) {
 			User newUser = new User(id, pw, name, randomCode());
-			
+			this.users.add(newUser);
 			System.out.println("가입 완료");
 		} else {
 			System.out.println("중복 id");
