@@ -34,7 +34,7 @@ public class BankManager {
 			} else if (sel == 4) {
 				am.deleteAcc();
 			}else if (sel == 5) {
-				
+				um.secession();
 			} else {
 				System.out.println("잘못된 메뉴");
 			}

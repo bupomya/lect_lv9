@@ -80,6 +80,23 @@ public class UserManager {
 		Bank.log = -1;
 	}//logout
 	
+	public void secession() {
+		System.out.print("delete id : ");
+		String delId = Bank.sc.next();
+		int idx = -1;
+		for (int i = 0; i < this.getUsersSize(); i++) {
+			if (this.users.get(i).getId() == delId) {
+				idx = i;
+			}
+		}
+		if (idx!=-1) {
+			this.users.set(idx, null);
+			System.out.println("Å»Åð¿Ï·á");
+		}else {
+			System.out.println("id´Ù½ÃÈ®ÀÎ");
+		}
+	}//secession
+	
 	
 	
 	
