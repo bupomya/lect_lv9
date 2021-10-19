@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 
+import model.User;
+
 public class FileManager {
 	private File file;
 	private FileWriter fw;
@@ -26,6 +28,7 @@ public class FileManager {
 			data += um.users.get(i).getId()+" / ";
 			data += um.users.get(i).getPw()+" / ";
 			data += um.users.get(i).getName()+" / ";
+			data += um.users.get(i).getUserCode()+" / ";
 			data += um.users.get(i).getAccCnt()+"\n";
 		}
 		return data;
@@ -52,6 +55,7 @@ public class FileManager {
 			
 			this.file = new File(this.fileAccsName);
 			this.fw = new FileWriter(file);
+			this.fw.write(data1);
 			fw.close();
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -59,7 +63,27 @@ public class FileManager {
 	}//save
 
 	public void load() {
-		
+		try {
+			file = new File(fileUserName);
+			fr = new FileReader(file);
+			br = new BufferedReader(fr);
+			while(true) {
+				String data = br.readLine();
+				String temp[] = data.split(" / ");
+				String id = temp[0];
+				String pw = temp[1];
+				String name = temp[2];
+				int userCode = Integer.parseInt(temp[3]);
+				int accCnt = Integer.parseInt(temp[4]);
+				User user = new User(id,pw,name,userCode,accCnt);
+				if (data == null) {
+					System.out.println("불러오기 완료");
+					break;
+				}
+			}//while
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}//load
 	
 }//FileManager
