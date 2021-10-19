@@ -19,7 +19,8 @@ public class AccountManager {
 		int cnt =um.users.get(Bank.log).getAccCnt(); 
 		if (cnt<3) {
 			this.ac.add(new Account(createAccNum(),userCode));
-			ac.get(Bank.log).setUserCode(createAccNum());
+			//ac.get(Bank.log).setUserCode(createAccNum());
+			
 			um.getUser(Bank.log).setAccCnt(++cnt);
 		}else {
 			System.out.println("최대개설 계좌 초과");
