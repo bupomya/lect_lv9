@@ -34,14 +34,18 @@ public class FileManager {
 	public void save() {
 		//id/pw/name/code/accCnt
 		try {
+			String data = putData();
+			this.file = new File(this.fileUserName);
+			this.fw = new FileWriter(file);
+			this.fw.write(data);
 			
+			this.file = new File(this.fileAccsName);
+			fw.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
 	}//save
 
-	
 	public void load() {
 		
 	}//load

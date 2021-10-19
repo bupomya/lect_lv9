@@ -27,7 +27,7 @@ public class BankManager {
 				System.out.println("잘못된 메뉴");
 			}
 		} else {
-			System.out.println("1.계좌 개설\n2.뱅킹\n3.로그아웃\n4.계좌삭제\n5.회원탈퇴");
+			System.out.println("1.뱅킹\n2.계좌개설\n3.로그아웃\n4.계좌삭제\n5.회원탈퇴\n6.저장\n7.불러오기");
 			int sel = Bank.sc.nextInt();
 			if (sel == 1) {
 
@@ -39,6 +39,10 @@ public class BankManager {
 				am.deleteAcc();
 			}else if (sel == 5) {
 				um.secession();
+			}else if (sel == 6) {
+				
+			}else if (sel == 7) {
+				
 			} else {
 				System.out.println("잘못된 메뉴");
 			}
