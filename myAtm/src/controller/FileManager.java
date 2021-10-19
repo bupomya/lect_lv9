@@ -22,7 +22,7 @@ public class FileManager {
 	
 	public String putData() {
 		String data = "";
-		for (int i = 0; i < this.am.ac.size(); i++) {
+		for (int i = 0; i < this.um.getUsersSize(); i++) {
 			data += um.users.get(i).getId()+" / ";
 			data += um.users.get(i).getPw()+" / ";
 			data += um.users.get(i).getName()+" / ";
@@ -31,15 +31,27 @@ public class FileManager {
 		return data;
 	}//putData
 	
+	public String putAcc() {
+		String data = "";
+		for (int i = 0; i < this.am.ac.size(); i++) {
+			data += this.am.ac.get(i).getAccNum()+" / ";
+			data += this.am.ac.get(i).getMoney()+" / ";
+			data += this.am.ac.get(i).getUserCode()+" / ";
+		}
+		return data;
+	}//putAcc
+	
 	public void save() {
 		//id/pw/name/code/accCnt
 		try {
 			String data = putData();
+			String data1 = putAcc();
 			this.file = new File(this.fileUserName);
 			this.fw = new FileWriter(file);
 			this.fw.write(data);
 			
 			this.file = new File(this.fileAccsName);
+			this.fw = new FileWriter(file);
 			fw.close();
 		} catch (Exception e) {
 			// TODO: handle exception
