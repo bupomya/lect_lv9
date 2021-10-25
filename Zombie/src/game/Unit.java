@@ -1,10 +1,11 @@
 package game;
 
+import java.util.Random;
+
 public class Unit {
 	private String name;
 	private int hp;
 	private int attack;
-	private int damage;
 	private int defense;
 	private int floor;
 	
@@ -28,12 +29,7 @@ public class Unit {
 	public void setAttack(int attack) {
 		this.attack = attack;
 	}
-	public int getDamage() {
-		return damage;
-	}
-	public void setDamage(int damage) {
-		this.damage = damage;
-	}
+	
 	public int getFloor() {
 		return floor;
 	}
@@ -41,5 +37,8 @@ public class Unit {
 		this.floor = floor;
 	}
 	
-	
+	public void attack(Unit target) {
+		Random rn = new Random();
+		int damage = (this.attack - target.defense)*(rn.nextInt(150)+50)/100;
+	}//attack
 }
