@@ -55,8 +55,13 @@ public class Game {
 			p.print();
 			System.out.println("=====VS======");
 			enemy.print();
-			System.out.printf("1.공격 2. 물약(%d개 남음)");
-			
+//			System.out.printf("1.공격 2. 물약(%d개 남음)");
+			int sel = sc.nextInt();
+			if (sel ==1) {
+				
+			}else if (sel ==2) {
+				
+			}
 			if (die(enemy) == 1) {
 				System.out.println("player 사망");
 				return false;
@@ -65,6 +70,40 @@ public class Game {
 				return true;
 			}
 		} // while
-
 	}// fight
+	
+	private void map(int act) {
+		System.out.println("1. 올라간다");
+		if (act == 1) {
+			System.out.println("2. 체력 회복");
+			System.out.println("3. 무기 강화");
+		}
+	}//map
+	
+	public void run() {
+		init();
+		int act = 1;
+		while(true) {
+			if (p.getFloor()>=12) {
+				System.out.println("생존 성공");
+				break;
+			}
+			map(act);
+			int sel = sc.nextInt();
+			if (sel ==1) {
+				System.out.println("한층 위로올라감");
+				p.setFloor(p.getFloor()+1);
+				int check = checkZombie();
+				if (check != -1) {
+					boolean fight = fight(enemy.get(check));
+				}else {
+					System.out.println("아무일도 없었다");
+				}
+			}else if (sel == 2) {
+				
+			}else if (sel == 3) {
+				
+			}
+		}//while
+	}//run
 }
