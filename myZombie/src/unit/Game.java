@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Game implements Recovery {
+public class Game  {
 	Scanner sc = new Scanner(System.in);
 	Random rn = new Random();
-	private int heal= 3;
 	private Game() {
 	}
 
@@ -57,9 +56,10 @@ public class Game implements Recovery {
 			System.out.printf("1.공격 2. 물약(%d개 남음)",this.heal);
 			int sel = sc.nextInt();
 			if (sel == 1) {
-
+				p.attack(enemy);
 			} else if (sel == 2) {
-
+				System.out.println("체력 100 회복");
+				p.heal(100);
 			}
 			if (die(enemy) == 1) {
 				return false;
@@ -78,12 +78,7 @@ public class Game implements Recovery {
 		}
 	}// map
 
-	@Override
-	public void heal(int heal) {
-		System.out.println("체력을 회복합니다");
-		p.setHp(p.getHp() + heal);
-		this.heal--;
-	}
+
 
 	public void run() {
 		init();
@@ -101,6 +96,16 @@ public class Game implements Recovery {
 				int check = checkZombie();
 				if (check != -1) {
 					boolean fight = fight(enemy.get(check));
+					
+					p.attack(enemy.get(check));
+					if (die(enemy.get(check))!=0) {
+						break;
+					}
+					
+					if (die(enemy.get(check))!=0) {
+						break;
+					}
+					
 					if (!fight) {
 						System.out.println("player 사망");
 						break;
@@ -110,8 +115,8 @@ public class Game implements Recovery {
 				}
 				act = 1;
 			} else if (sel == 2 && act == 1) {
-				if (this.heal>0) {					
-					heal(100);
+				if (p.heal<3) {					
+					p.heal(100);
 					act = 2;
 					System.out.println("체력이 100 회복되었습니다");
 				}else {

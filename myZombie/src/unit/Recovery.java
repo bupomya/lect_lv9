@@ -1,5 +1,6 @@
 package unit;
 
 public interface Recovery {
-	public void heal(int heal);
+	public static final int MAX = 3;
+	public void heal(int recovery);
 }
