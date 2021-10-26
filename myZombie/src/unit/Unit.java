@@ -45,4 +45,5 @@ public class Unit {
 		System.out.printf("이름 : %s\t체력 : %d\n",name,hp);
 		System.out.printf("공격력 : %d\t방어력 : %d\t%d층\n",attack,defence,floor);
 	}//print
+
 }//Unit
