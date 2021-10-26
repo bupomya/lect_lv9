@@ -27,7 +27,10 @@ public class Unit {
 		return name;
 	}
 	public int getDefense() {
-		return defense;
+		return this.defense;
+	}
+	public void setDefense(int defense) {
+		this.defense = defense;
 	}
 
 	public int getAttack() {
@@ -57,7 +60,7 @@ public class Unit {
 	}//attack
 	
 	public void print() {
-		System.out.printf("이름 : %s/t체력 : %d\n",name,hp);
-		System.out.printf("공격력 : %d\t방어력 : %d\t층수 : %d",attack,defense,floor);
+		System.out.printf("이름 : %s\t체력 : %d\n",name,hp);
+		System.out.printf("공격력 : %d\t방어력 : %d\t층수 : %d\n",attack,defense,floor);
 	}//print
 }//Unit

@@ -27,20 +27,20 @@ public class Player extends Unit{
 	
 	public void attack(Unit target) {
 		Random rn = new Random();
-		ZombieKing zombieKing = (ZombieKing) target;
+		
 		if (target instanceof ZombieKing) {
-			if (zombieKing.getShield()>0) {
+			if (((ZombieKing) target).getShield()>0) {
 				int damage = (this.getAttack() - target.getDefense())*(rn.nextInt(150)+50)/100;
 				if (damage<=0) {
 					damage = 1;
 				}
 				System.out.printf("%s의 공격 -> %d데미지\n",getName(),damage);
-				((ZombieKing) target).setShield(zombieKing.getShield()-damage);
-				if (zombieKing.getShield()<=0) {
+				((ZombieKing) target).setShield(((ZombieKing) target).getShield()-damage);
+				if (((ZombieKing) target).getShield()<=0) {
 					System.out.printf("%s 의 쉴드 파괴",target.getName());
-					zombieKing.setShield(0);
+					((ZombieKing) target).setShield(0);
 				}
-				System.out.printf("%s의 남은 체력 : %d / 쉴드 : %d",target.getName(),target.getHp(),zombieKing.getShield());
+				System.out.printf("%s의 남은 체력 : %d / 쉴드 : %d\n",target.getName(),target.getHp(),((ZombieKing) target).getShield());
 			}else {
 				super.attack(target);
 			}
