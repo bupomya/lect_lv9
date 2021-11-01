@@ -1,6 +1,8 @@
 package models;
 
-public class Unit {
+import java.util.Random;
+
+public class Unit implements Attackable{
 	private String name;
 	private int hp;
 	private int defence;
@@ -46,6 +48,26 @@ public class Unit {
 	public void setFloor(int floor) {
 		this.floor = floor;
 	}
+	
+	@Override
+	public void attack(Unit target) {
+		Random rn = new Random();
+		int damage = this.getAttack() - target.getDefence() *(rn.nextInt(150)+50)/100;
+		if (damage <=0) {
+			damage = 1;
+		}
+		if (target instanceof ZombieKing) {
+			if (((ZombieKing) target).getShield()>0) {
+				((ZombieKing)target).setShield(((ZombieKing)target).getShield() - damage);
+			}else {
+				System.out.println("½¯µå ÆÄ±«");
+				target.setHp(target.getHp()-damage);
+			}
+		}else {
+			target.setHp(target.getHp()-damage);
+		}
+		
+	}//attack
 	
 	
 	public void printUnit() {

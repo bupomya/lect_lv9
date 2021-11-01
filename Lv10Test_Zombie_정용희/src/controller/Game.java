@@ -45,10 +45,10 @@ public class Game {
 		int ranEnforce = rn.nextInt(3)+1;
 		if (ranSelEnforce == 1) {
 			p.setAttack(p.getAttack()+ranEnforce);
-			System.out.printf("공격력 %d 강화\n");
+			System.out.printf("공격력 %d 강화\n",p.getAttack());
 		}else if (ranSelEnforce == 2) {
 			p.setDefence(p.getDefence()+ranEnforce);
-			System.out.printf("방어력 %d 강화\n");
+			System.out.printf("방어력 %d 강화\n",p.getDefence());
 		}
 	}//enforce
 	
@@ -78,32 +78,35 @@ public class Game {
 			}else {
 				System.out.println("잘못된 선택지");
 			}
-			if (die(zombie)!= -1) {
-				if (die(zombie) == 0) {
-					System.out.println("승리");
-					return true;
-				}else {
-					System.out.println("패배");
-					return false;
-				}
+			
+			if (die(zombie) != -1) {
+				break;
 			}
+			zombie.attack(p);
+			if (die(zombie) != -1) {
+				break;
+			}
+
 		}//while
+			if (die(zombie) == 0) {
+				System.out.println("승리");
+				return true;
+			}else {
+				System.out.println("패배");
+				return false;
+			}
 	}//fight
 
 	private int checkZombie() {
-		
 		for (int i = 0; i < zombie.size(); i++) {
 			if (p.getFloor() == zombie.get(i).getFloor()) {
 				System.out.println("좀비를 만났다");
 				return i;
 			}
 		}
-		
 		return -1;
 	}//checkZombie
-	
-	
-	
+
 	public void run() {
 		init();
 		while(true) {
@@ -115,10 +118,13 @@ public class Game {
 			String sel = sc.next();
 			if (sel.equals("1")) {
 				p.setFloor(p.getFloor()+1);
-				checkZombie();
-				if (checkZombie()!=-1) {
-					p.attack(zombie.get(checkZombie()));
-					
+				int check = checkZombie();
+				if (check!=-1) {
+					boolean fight = fight(zombie.get(check));
+					if (fight = false) {
+						break;
+					}
+
 				}else {
 					System.out.println("좀비 없음");
 				}
