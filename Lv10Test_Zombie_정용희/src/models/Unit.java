@@ -71,7 +71,7 @@ public class Unit implements Attackable{
 	
 	
 	public void printUnit() {
-		System.out.printf("name : %d/thp : %d\n",this.name,this.hp);
+		System.out.printf("name : %s\thp : %d\n",this.name,this.hp);
 		System.out.printf("attack : %d\tdefence : %d\t Ãþ ¼ö : %d\n",this.attack,this.defence,this.floor);
 	}//printUnit
 	
