@@ -41,7 +41,7 @@ public class Content extends Util implements Runnable{
 		this.reset.setBounds(80, 50, 80, 30);
 		this.reset.addActionListener(this);
 		add(this.reset);
-	}
+	}//setButton
 
 	private void setTimer() {
 		this.timer.setBounds(30, 50, 50, 30);
@@ -144,6 +144,9 @@ public class Content extends Util implements Runnable{
 			if (this.isRun) {
 				this.ms++;
 				this.timer.setText(String.format("%3d.%03d", this.ms/1000,this.ms%1000));
+				if (this.rank>=SIZE) {
+					break;
+				}
 			}
 			try {
 				Thread.sleep(1);
