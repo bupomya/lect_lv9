@@ -68,7 +68,7 @@ public class Content extends Util implements Runnable{
 			Horse h = this.horses[i];
 			g.drawImage(h.getIcon().getImage(), h.getX(), h.getY(), null);
 			g.drawLine(this.startX, h.getY()+h.getH(), 1000-30, h.getY()+h.getH());
-			
+
 			if (h.getState() == h.getGOAL()) {
 				g.setFont(new Font("", Font.BOLD, 20));
 				g.drawString(this.rank+"µî", this.endX-100, h.getY()+h.getH()/2);
@@ -77,13 +77,14 @@ public class Content extends Util implements Runnable{
 			}
 		}
 		if (this.isRun) {
-			update();
+			update();			
 			try {
 				Thread.sleep(50);
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
 		}
+		
 		repaint();
 	}// paintComponent
 	
@@ -106,6 +107,8 @@ public class Content extends Util implements Runnable{
 					h.setState(h.getGOAL());
 					h.setRecode(String.format("%d.%03d", this.ms/1000, this.ms%1000));
 					h.setRank(this.rank);
+					this.rank++;
+					goal = !goal;
 				}else if (xx>= this.endX && goal) {
 					i--;
 					continue;
@@ -120,7 +123,7 @@ public class Content extends Util implements Runnable{
 		if (e.getSource() == this.reset) {
 			this.isRun = !this.isRun;
 			this.reset.setText(this.isRun ? "reset" : "start");
-			
+
 			if (!this.isRun) {
 				resetGame();
 			}
@@ -129,12 +132,10 @@ public class Content extends Util implements Runnable{
 	}
 
 	private void resetGame() {
-		this.rank = 1;
-		int x = startX;
-		for (int i = 0; i < SIZE; i++) {
-			this.horses[i].setX(startX);
-		}
+		setHorse();
 		this.ms = 0;
+		this.timer.setText("REDAY");
+		this.rank = 1;
 	}
 
 	@Override
