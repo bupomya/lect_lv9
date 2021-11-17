@@ -2,13 +2,14 @@ package horse;
 
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
 import java.util.Iterator;
 import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-public class Content extends Util {
+public class Content extends Util implements Runnable{
 
 	Random rn = new Random();
 	private final int SIZE = 5;
@@ -36,7 +37,10 @@ public class Content extends Util {
 	}// Content();
 
 	private void setButton() {
-
+		this.reset.setText("START");
+		this.reset.setBounds(80, 50, 80, 30);
+		this.reset.addActionListener(this);
+		add(this.reset);
 	}
 
 	private void setTimer() {
@@ -67,13 +71,13 @@ public class Content extends Util {
 			
 			if (h.getState() == h.getGOAL()) {
 				g.setFont(new Font("", Font.BOLD, 20));
-				g.drawString("등", this.endX-100, h.getY()+h.getH()/2);
+				g.drawString(this.rank+"등", this.endX-100, h.getY()+h.getH()/2);
 				g.setFont(new Font("",Font.PLAIN, 10));
 				g.drawString(h.getRecode(), this.endX-50, h.getY()+h.getH()/2);
 			}
 		}
-
-		if (isRun) {
+		if (this.isRun) {
+			update();
 			try {
 				Thread.sleep(50);
 			} catch (Exception e) {
@@ -82,4 +86,70 @@ public class Content extends Util {
 		}
 		repaint();
 	}// paintComponent
+	
+	private void update() {
+		//5마리의 말들이 랜덤하게 점프
+		// setX()
+		
+		//1번 update 할때에, 1마리만 골인할 수 있다
+		boolean goal = false;
+		
+		for (int i = 0; i < SIZE; i++) {
+			Horse h = this.horses[i];
+			int jump = rn.nextInt(10)*3;
+			
+			int xx = h.getX()+jump;
+			
+			if (h.getState() == h.getRUN()) {
+				if (xx>= this.endX && !goal) {
+					xx = endX;
+					h.setState(h.getGOAL());
+					h.setRecode(String.format("%d.%03d", this.ms/1000, this.ms%1000));
+					h.setRank(this.rank);
+				}else if (xx>= this.endX && goal) {
+					i--;
+					continue;
+				}
+				h.setX(xx);
+			}
+		}
+	}//update
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == this.reset) {
+			this.isRun = !this.isRun;
+			this.reset.setText(this.isRun ? "reset" : "start");
+			
+			if (!this.isRun) {
+				resetGame();
+			}
+		}
+		
+	}
+
+	private void resetGame() {
+		this.rank = 1;
+		int x = startX;
+		for (int i = 0; i < SIZE; i++) {
+			this.horses[i].setX(startX);
+		}
+		this.ms = 0;
+	}
+
+	@Override
+	public void run() {
+		while(true) {
+			if (this.isRun) {
+				this.ms++;
+				this.timer.setText(String.format("%3d.%03d", this.ms/1000,this.ms%1000));
+			}
+			try {
+				Thread.sleep(1);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		}//while
+		
+	}
 }// Content
