@@ -1,3 +1,3 @@
-module drawRect {
+module horse {
 	requires java.desktop;
 }

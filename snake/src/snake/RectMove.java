@@ -67,8 +67,7 @@ class Rect{
 }//Nemo
 
 class MovingRect extends JPanel implements MouseListener,MouseMotionListener{
-	
-	private int yx[] = new int [2];
+
 	private boolean isMoving;
 	private int gapW,gapH;
 	private Rect rect = null;

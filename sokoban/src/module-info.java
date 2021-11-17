@@ -1,3 +1,3 @@
-module drawRect {
+module sokoban {
 	requires java.desktop;
 }
