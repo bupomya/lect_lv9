@@ -71,15 +71,15 @@ public class Content extends Util implements Runnable{
 
 			if (h.getState() == h.getGOAL()) {
 				g.setFont(new Font("", Font.BOLD, 20));
-				g.drawString(this.rank+"µî", this.endX-100, h.getY()+h.getH()/2);
+				g.drawString(h.getRank()+"µî", this.endX-100, h.getY()+h.getH()/2);
 				g.setFont(new Font("",Font.PLAIN, 10));
 				g.drawString(h.getRecode(), this.endX-50, h.getY()+h.getH()/2);
 			}
 		}
 		if (this.isRun) {
-			update();			
 			try {
 				Thread.sleep(50);
+				update();
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
